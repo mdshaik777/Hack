@@ -122,28 +122,28 @@ jobs:
         if: needs.build-patient-service.result == 'success'
         run: |
           aws ecs update-service \
-            --cluster healthcare-app-dev-cluster \
-            --service healthcare-app-dev-patient-service \
+            --cluster app-pat-serv-hack-dev-cluster \
+            --service app-pat-serv-hack-dev-patient-service \
             --force-new-deployment
 
       - name: Update Appointment Service
         if: needs.build-appointment-service.result == 'success'
         run: |
           aws ecs update-service \
-            --cluster healthcare-app-dev-cluster \
-            --service healthcare-app-dev-appointment-service \
+            --cluster app-pat-serv-hack-dev-cluster \
+            --service app-pat-serv-hack-dev-appointment-service \
             --force-new-deployment
 
       - name: Wait for services to stabilize
         run: |
           if [[ "${{ needs.build-patient-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
-              --cluster healthcare-app-dev-cluster \
-              --services healthcare-app-dev-patient-service
+              --cluster app-pat-serv-hack-dev-cluster \
+              --services app-pat-serv-hack-dev-patient-service
           fi
           
           if [[ "${{ needs.build-appointment-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
-              --cluster healthcare-app-dev-cluster \
-              --services healthcare-app-dev-appointment-service
+              --cluster app-pat-serv-hack-dev-cluster \
+              --services app-pat-serv-dehack-dev-appointment-service
           fi
