@@ -13,7 +13,7 @@ variable "environment" {
 variable "project_name" {
   description = "Project name"
   type        = string
-  default     = "hackathon-app-patient-service"
+  default     = "app-pat-serv"
 }
 
 variable "vpc_cidr" {
