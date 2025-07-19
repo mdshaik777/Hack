@@ -60,7 +60,7 @@ jobs:
         working-directory: microservices/patient-service
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: healthcare-app-dev-patient-service
+          ECR_REPOSITORY: app-pat-serv-hack-dev-patient-service
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -93,7 +93,7 @@ jobs:
         working-directory: microservices/appointment-service
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: healthcare-app-dev-appointment-service
+          ECR_REPOSITORY: app-pat-serv-hack-dev-appointment-service
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -145,5 +145,5 @@ jobs:
           if [[ "${{ needs.build-appointment-service.result }}" == "success" ]]; then
             aws ecs wait services-stable \
               --cluster app-pat-serv-hack-dev-cluster \
-              --services app-pat-serv-dehack-dev-appointment-service
+              --services app-pat-serv-hack-dev-appointment-service
           fi
