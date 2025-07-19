@@ -7,13 +7,13 @@ variable "aws_region" {
 variable "environment" {
   description = "Environment name"
   type        = string
-  default     = "dev"
+  default     = "hack-dev"
 }
 
 variable "project_name" {
   description = "Project name"
   type        = string
-  default     = "healthcare-app"
+  default     = "hackathon-application-patient-service"
 }
 
 variable "vpc_cidr" {
